@@ -1,0 +1,39 @@
+{
+  "name": "pasteit-anywhere",
+  "version": "0.0.0",
+  "description": "Copy and Paste it from any device",
+  "productName": "PasteIt Anywhere",
+  "author": "Nikhil Warke <nwarke@protonmail.com>",
+  "private": true,
+  "scripts": {
+    "lint": "eslint --ext .js,.vue src",
+    "test": "echo \"No test specified\" && exit 0"
+  },
+  "dependencies": {
+    "axios": "^0.17.1",
+    "firebase": "^4.11.0",
+    "vuefire": "^1.4.5"
+  },
+  "devDependencies": {
+    "babel-eslint": "8.2.1",
+    "eslint": "4.15.0",
+    "eslint-config-standard": "10.2.1",
+    "eslint-friendly-formatter": "3.0.0",
+    "eslint-loader": "1.7.1",
+    "eslint-plugin-import": "2.7.0",
+    "eslint-plugin-node": "5.2.0",
+    "eslint-plugin-promise": "3.4.0",
+    "eslint-plugin-standard": "3.0.1",
+    "eslint-plugin-vue": "4.0.0",
+    "quasar-cli": "^0.15.9"
+  },
+  "engines": {
+    "node": ">= 8.9.0",
+    "npm": ">= 5.6.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 10"
+  ]
+}
