@@ -18,10 +18,10 @@
 
             <div class="col-xs-12 col-sm-6 q-pa-sm">
               <div class="row justify-center q-mb-sm">
-                <q-input type="number" float-label="Enter token" />
+                <q-input v-model="sessionId" float-label="Enter token" />
               </div>
               <div class="row justify-center">
-                <q-btn label="Submit Token"></q-btn>
+                <q-btn label="Submit Token" @click="join()"></q-btn>
               </div>
             </div>
             <div class="col-xs-12 col-sm-6 q-pa-sm">
@@ -39,10 +39,22 @@
 </template>
 
 <script>
+
 export default {
   // name: 'LayoutName',
   data() {
-    return {}
+    return {
+      sessionId: ''
+    }
+  },
+  methods: {
+    join() {
+      if (this.sessionId === '') {
+        this.$q.notify({ message: 'Enter a session id', timeout: 3000 })
+        return
+      }
+      this.$router.push(`/home/${this.sessionId.toString()}`)
+    }
   }
 }
 </script>

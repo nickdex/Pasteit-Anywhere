@@ -1,6 +1,6 @@
 export default [
   {
-    path: '/home',
+    path: '/home/:session',
     component: () => import('layouts/default'),
     children: [{ path: '', component: () => import('pages/home') }]
   },

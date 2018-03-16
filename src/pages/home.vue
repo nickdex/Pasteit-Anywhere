@@ -14,23 +14,24 @@ export default {
   computed: {
     clips() {
       const clips = this.clipsRef.map(clipRef => {
-        let clip = {}
-        clip.name = clipRef.senderEmail
-        clip.text = [clipRef.text]
-        clip.stamp = timeago().format(clipRef.timestamp)
-        clip.id = clipRef.id
-        clip.avatar = 'statics/phone_black.png'
-        return clip
+        return {
+          name: clipRef.senderEmail,
+          text: [clipRef.text],
+          stamp: timeago().format(clipRef.timestamp),
+          id: clipRef.id,
+          avatar: 'statics/phone_black.png'
+        }
       })
       return clips
     }
   },
-  firebase: {
-    clipsRef: db.refFromURL(
-      'https://pasteit-84c04.firebaseio.com' +
-        '/clip_items' +
-        '/AIxmhazt6lg0S8VZdEaJxwOvof13'
-    )
+  firebase() {
+    return {
+      clipsRef: db
+        .ref('sessions')
+        .child(this.$route.params.session)
+        .child('clips')
+    }
   },
   data() {
     return {
