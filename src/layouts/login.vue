@@ -18,7 +18,7 @@
 
             <div class="col-xs-12 col-sm-6 q-pa-sm">
               <div class="row justify-center q-mb-sm">
-                <q-input v-model="sessionId" float-label="Enter token" />
+                <q-input type="number" v-model="inputSessionId" float-label="Enter token" />
               </div>
               <div class="row justify-center">
                 <q-btn label="Submit Token" @click="join()"></q-btn>
@@ -26,7 +26,7 @@
             </div>
             <div class="col-xs-12 col-sm-6 q-pa-sm">
               <div class="row justify-center">
-                <q-btn label="Generate Token"></q-btn>
+                <q-btn label="Generate Token" @click="generate()"></q-btn>
               </div>
             </div>
 
@@ -39,21 +39,50 @@
 </template>
 
 <script>
+import { db } from '../firebase'
 
 export default {
   // name: 'LayoutName',
   data() {
     return {
-      sessionId: ''
+      inputSessionId: ''
+    }
+  },
+  firebase: {
+    firesbaseSessionCount: {
+      source: db.ref('count'),
+      asObject: true
     }
   },
   methods: {
     join() {
-      if (this.sessionId === '') {
+      if (this.inputSessionId === '') {
         this.$q.notify({ message: 'Enter a session id', timeout: 3000 })
         return
       }
-      this.$router.push(`/home/${this.sessionId.toString()}`)
+      this.$router.push(`/home/${this.inputSessionId.toString()}`)
+    },
+    generate() {
+      if (this.firesbaseSessionCount !== undefined) {
+        const session = this.firesbaseSessionCount['.value'] + 1
+
+        db.ref('count').set(session)
+
+        let firstClipRef = db
+          .ref('sessions')
+          .child(session)
+          .child('clips')
+          .push()
+        firstClipRef.set({
+          deviceType: 'PHONE',
+          id: firstClipRef.key,
+          senderEmail: 'cloud',
+          text: 'Welcome',
+          timestamp: new Date().getTime()
+        })
+
+        this.$router.push(`/home/adhoc/${session}`)
+      }
     }
   }
 }
