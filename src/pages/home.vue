@@ -3,7 +3,7 @@
     <div class="layout-padding" style="width: 500px; max-width: 95vw;">
       <q-chat-message v-for="msg in clips" :key="msg.id" :label="msg.label" :sent="msg.sent" :text-color="msg.textColor" :bg-color="msg.bgColor" :name="msg.name" :avatar="msg.avatar" :text="msg.text" :stamp="msg.stamp" />
       <q-page-sticky position="bottom" :offset="[0, 20]">
-        <q-input v-model="inputText" float-label="Enter text" :after="[{icon: 'arrow_forward', handler: this.addClip}]" />
+        <q-input inverted v-model="inputText" float-label="Enter text" :after="[{icon: 'arrow_forward', handler: this.addClip}]" />
       </q-page-sticky>
     </div>
   </q-page>
