@@ -60,7 +60,7 @@ export default {
         this.$q.notify({ message: 'Enter a session id', timeout: 3000 })
         return
       }
-      this.$router.push(`/home/${this.inputSessionId.toString()}`)
+      this.$router.push(`/home/${this.inputSessionId.toString()}?host=false`)
     },
     generate() {
       if (this.firesbaseSessionCount !== undefined) {
@@ -81,7 +81,7 @@ export default {
           timestamp: new Date().getTime()
         })
 
-        this.$router.push(`/home/adhoc/${session}`)
+        this.$router.push(`/home/${session}?host=true`)
       }
     }
   }
