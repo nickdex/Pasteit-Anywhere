@@ -57,7 +57,8 @@ module.exports = function(ctx) {
         'QItem',
         'QItemMain',
         'QItemSide',
-        'QChatMessage'
+        'QChatMessage',
+        'QScrollArea'
       ],
       directives: ['Ripple'],
       // Quasar plugins
