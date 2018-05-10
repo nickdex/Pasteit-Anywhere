@@ -1,13 +1,18 @@
 <template>
-  <q-page padding>
-    <q-page-sticky position="bottom" :offset="[0, 20]">
-      <div style="width: 500px; max-width: 95vw;">
-        <q-scroll-area style="width: 500px; max-width: 95vw; height: 80vh;">
-          <q-chat-message v-for="msg in clips" :key="msg.id" :label="msg.label" :sent="msg.sent" :text-color="msg.textColor" :bg-color="msg.bgColor" :name="msg.name" :avatar="msg.avatar" :text="msg.text" :stamp="msg.stamp" />
-        </q-scroll-area>
-      </div>
-      <q-input inverted v-model="inputText" float-label="Enter text" :after="[{icon: 'arrow_forward', handler: this.addClip}]" />
-    </q-page-sticky>
+  <q-page padding class="row justify-center">
+    <div style="width: 650px; max-width: 95vw;">
+      <q-scroll-area class="q-pr-md q-pl-sm" style="height: 80vh; padding-bottom: 3vh;" :thumb-style="{
+          borderRadius: '5px',
+          width: '10px',
+          opacity: 0.1
+        }">
+        <q-chat-message v-for="msg in clips" :key="msg.id" :label="msg.label" :sent="msg.sent" :text-color="msg.textColor" :bg-color="msg.bgColor" :name="msg.name" :avatar="msg.avatar" :text="msg.text" :stamp="msg.stamp" />
+      </q-scroll-area>
+      <q-page-sticky position="bottom" :offset="[0, 20]">
+        <q-input style="width: 80vw; max-width: 430px" inverted v-model="inputText" float-label="Enter text" :after="[{icon: 'arrow_forward', handler: this.addClip}]" />
+      </q-page-sticky>
+    </div>
+
   </q-page>
 </template>
 
